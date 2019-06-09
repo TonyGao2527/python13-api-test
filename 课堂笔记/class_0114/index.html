@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Requests: è®© HTTP æå¡äººç±» &#8212; Requests 2.18.1 ææ¡£</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.18.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="index" title="ç´¢å¼" href="genindex.html" />
+    <link rel="search" title="æç´¢" href="search.html" />
+    <link rel="next" title="ç®ä»" href="user/intro.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.python-requests.org/zh_CN/latest/" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'index'
+READTHEDOCS_DATA['source_suffix'] = '.rst'
+</script>
+
+<script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-analytics.js"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="requests-http">
+<h1>Requests: è®© HTTP æå¡äººç±»<a class="headerlink" href="#requests-http" title="æ°¸ä¹é¾æ¥è³æ é¢">Â¶</a></h1>
+<p>åè¡çæ¬ v2.18.1. (<a class="reference internal" href="user/install.html#install"><span class="std std-ref">å®è£è¯´æ</span></a>)</p>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/requests"><img alt="https://img.shields.io/pypi/l/requests.svg" src="https://img.shields.io/pypi/l/requests.svg" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/requests"><img alt="https://img.shields.io/pypi/wheel/requests.svg" src="https://img.shields.io/pypi/wheel/requests.svg" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/requests"><img alt="https://img.shields.io/pypi/pyversions/requests.svg" src="https://img.shields.io/pypi/pyversions/requests.svg" /></a>
+<a class="reference external image-reference" href="https://codecov.io/github/requests/requests"><img alt="codecov.io" src="https://codecov.io/github/requests/requests/coverage.svg?branch=master" /></a>
+<a class="reference external image-reference" href="https://saythanks.io/to/kennethreitz"><img alt="https://img.shields.io/badge/Say%20Thanks!-ð¦-1EAEDB.svg" src="https://img.shields.io/badge/Say%20Thanks!-ð¦-1EAEDB.svg" /></a>
+<p>Requests å¯ä¸çä¸ä¸ª<strong>éè½¬åºå </strong>ç Python HTTP åºï¼äººç±»å¯ä»¥å®å¨äº«ç¨ã</p>
+<p><strong>è­¦å</strong>ï¼éä¸ä¸ä½¿ç¨å¶ä» HTTP åºä¼å¯¼è´å±é©çå¯ä½ç¨ï¼åæ¬ï¼å®å¨ç¼ºé·çãåä½ä»£ç çãéæ°åæè½®å­çãåææ¡£çãæéãå¤´ç¼ãçè³æ­»äº¡ã</p>
+<p>çå§ï¼è¿å°±æ¯ Requests çå¨åï¼</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://api.github.com/user&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;pass&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span>
+<span class="go">200</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;content-type&#39;</span><span class="p">]</span>
+<span class="go">&#39;application/json; charset=utf8&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">encoding</span>
+<span class="go">&#39;utf-8&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">text</span>
+<span class="go">u&#39;{&quot;type&quot;:&quot;User&quot;...&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="go">{u&#39;private_gists&#39;: 419, u&#39;total_private_repos&#39;: 77, ...}</span>
+</pre></div>
+</div>
+<p>åè§ <a class="reference external" href="https://gist.github.com/973705">æªä½¿ç¨ Requests çç¸ä¼¼ä»£ç </a>.</p>
+<p>Requests åè®¸ä½ åé<strong>çº¯å¤©ç¶ï¼æ¤ç©é¥²å»</strong>ç HTTP/1.1 è¯·æ±ï¼æ éæå·¥å³å¨ãä½ ä¸éè¦æå¨ä¸º
+URL æ·»å æ¥è¯¢å­ä¸²ï¼ä¹ä¸éè¦å¯¹ POST æ°æ®è¿è¡è¡¨åç¼ç ãKeep-alive å HTTP è¿æ¥æ± çåè½æ¯
+100% èªå¨åçï¼ä¸åå¨åé½æ¥èªäºæ ¹æ¤å¨ Requests åé¨ç <a class="reference external" href="https://github.com/shazow/urllib3">urllib3</a>ã</p>
+<div class="section" id="id1">
+<h2>ç¨æ·è§è¯<a class="headerlink" href="#id1" title="æ°¸ä¹é¾æ¥è³æ é¢">Â¶</a></h2>
+<p>TwitterãSpotifyãMicrosoftãAmazonãLyftãBuzzFeedãRedditãNSAãå¥³çæ®¿ä¸çæ¿åºãAmazonãGoogleãTwilioãMozillaãHerokuãPayPalãNPRãObama for AmericaãTransifexãNative InstrumentsãWashington PostãTwitterãSoundCloudãKipptãReadabilityãä»¥åè¥å¹²ä¸æ¿å¬å¼èº«ä»½çèé¦æ¿åºæºæé½å¨åé¨ä½¿ç¨ã</p>
+<dl class="docutils">
+<dt><strong>Armin Ronacher</strong></dt>
+<dd>Requests æ¯ä¸ä¸ªå®ç¾çä¾å­ï¼å®è¯æäºéè¿æ°å°å¥½å¤çæ½è±¡ï¼API å¯ä»¥åå¾å¤ä¹ä¼ç¾ã</dd>
+<dt><strong>Matt DeBoard</strong></dt>
+<dd>æè¦æ³ä¸ªåæ³ï¼æ &#64;kennethreitz åç Python requests æ¨¡ååæçº¹èº«ãä¸å­ä¸æ¼ã</dd>
+<dt><strong>Daniel Greenfeld</strong></dt>
+<dd>æè°¢ &#64;kennethreitz ç Requests åºï¼ååç¨ 10 è¡ä»£ç ç¸æäº 1200 è¡æå¤§å©é¢ä»£ç ãä»å¤©çæ¯ç½åäºï¼</dd>
+<dt><strong>Kenny Meyers</strong></dt>
+<dd>Python HTTP: çæä¸å¦ï¼é½å»ç¨ Requests å§ãç®åä¼ç¾ï¼èä¸ç¬¦å Python é£æ ¼ã</dd>
+</dl>
+</div>
+<div class="section" id="id2">
+<h2>åè½ç¹æ§<a class="headerlink" href="#id2" title="æ°¸ä¹é¾æ¥è³æ é¢">Â¶</a></h2>
+<p>Requests å®å¨æ»¡è¶³ä»æ¥ web çéæ±ã</p>
+<ul class="simple">
+<li>Keep-Alive &amp; è¿æ¥æ± </li>
+<li>å½éåååå URL</li>
+<li>å¸¦æä¹ Cookie çä¼è¯</li>
+<li>æµè§å¨å¼ç SSL è®¤è¯</li>
+<li>èªå¨åå®¹è§£ç </li>
+<li>åºæ¬/æè¦å¼çèº«ä»½è®¤è¯</li>
+<li>ä¼éç key/value Cookie</li>
+<li>èªå¨è§£å</li>
+<li>Unicode ååºä½</li>
+<li>HTTP(S) ä»£çæ¯æ</li>
+<li>æä»¶ååä¸ä¼ </li>
+<li>æµä¸è½½</li>
+<li>è¿æ¥è¶æ¶</li>
+<li>ååè¯·æ±</li>
+<li>æ¯æ <code class="docutils literal"><span class="pre">.netrc</span></code></li>
+</ul>
+<p>Requests æ¯æ Python 2.6â2.7ä»¥å3.3â3.7ï¼èä¸è½å¨ PyPy ä¸å®ç¾è¿è¡ã</p>
+</div>
+<div class="section" id="id3">
+<h2>ç¨æ·æå<a class="headerlink" href="#id3" title="æ°¸ä¹é¾æ¥è³æ é¢">Â¶</a></h2>
+<p>è¿é¨åææ¡£æ¯ä»¥æå­ä¸ºä¸»ï¼ä» Requests çèæ¯è®²èµ·ï¼ç¶åå¯¹ Requests çéç¹åè½åäºéä¸çä»ç»ã</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user/intro.html">ç®ä»</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user/intro.html#id2">å¼åå²å­¦</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/intro.html#apache2">Apache2 åè®®</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/intro.html#requests">Requests åè®®</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user/install.html">å®è£ Requests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user/install.html#pip-install-requests">pip install requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/install.html#id1">è·å¾æºç </a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user/quickstart.html">å¿«éä¸æ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#id2">åéè¯·æ±</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#url">ä¼ é URL åæ°</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#id3">ååºåå®¹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#id4">äºè¿å¶ååºåå®¹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#json">JSON ååºåå®¹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#id5">åå§ååºåå®¹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#id6">å®å¶è¯·æ±å¤´</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#post">æ´å å¤æç POST è¯·æ±</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#post-multipart-encoded">POSTä¸ä¸ªå¤é¨åç¼ç (Multipart-Encoded)çæä»¶</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#id7">ååºç¶æç </a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#id8">ååºå¤´</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#cookie">Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#id9">éå®åä¸è¯·æ±åå²</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#id10">è¶æ¶</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/quickstart.html#id11">éè¯¯ä¸å¼å¸¸</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user/advanced.html">é«çº§ç¨æ³</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#session-objects">ä¼è¯å¯¹è±¡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#request-and-response-objects">è¯·æ±ä¸ååºå¯¹è±¡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#prepared-request">åå¤çè¯·æ± ï¼Prepared Requestï¼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#ssl">SSL è¯ä¹¦éªè¯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#id4">å®¢æ·ç«¯è¯ä¹¦</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#ca">CA è¯ä¹¦</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#body-content-workflow">ååºä½åå®¹å·¥ä½æµ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#keep-alive">ä¿ææ´»å¨ç¶æï¼æä¹è¿æ¥ï¼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#streaming-uploads">æµå¼ä¸ä¼ </a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#chunk-encoding">åç¼ç è¯·æ±</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#post">POST å¤ä¸ªååç¼ç çæä»¶</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#event-hooks">äºä»¶æé©</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#custom-auth">èªå®ä¹èº«ä»½éªè¯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#streaming-requests">æµå¼è¯·æ±</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#proxies">ä»£ç</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#compliance">åè§æ§</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#http">HTTPå¨è¯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#id17">å®å¶å¨è¯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#link-headers">ååºå¤´é¾æ¥å­æ®µ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#transport-adapters">ä¼ è¾ééå¨</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#blocking-or-nonblocking">é»å¡åéé»å¡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#header">Header æåº</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/advanced.html#timeout">è¶æ¶ï¼timeoutï¼</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user/authentication.html">èº«ä»½è®¤è¯</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user/authentication.html#id2">åºæ¬èº«ä»½è®¤è¯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/authentication.html#id3">æè¦å¼èº«ä»½è®¤è¯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/authentication.html#oauth-1">OAuth 1 è®¤è¯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/authentication.html#oauth-2-openid">OAuth 2 ä¸ OpenID è¿æ¥è®¤è¯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/authentication.html#id4">å¶ä»èº«ä»½è®¤è¯å½¢å¼</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/authentication.html#id5">æ°çèº«ä»½è®¤è¯å½¢å¼</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>ç¤¾åºæå<a class="headerlink" href="#id4" title="æ°¸ä¹é¾æ¥è³æ é¢">Â¶</a></h2>
+<p>è¿é¨åææ¡£ä¹æ¯æå­ä¸ºä¸»ï¼è¯¦ç»ä»ç»äº Requests ççæåç¤¾åºã</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="community/faq.html">å¸¸è§é®é¢</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/recommended.html">æ¨èçåºåæ©å±</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/out-there.html">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/out-there.html#articles-talks">Articles &amp; Talks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/support.html">æ¯æ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/vulnerabilities.html">Vulnerability Disclosure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/updates.html">æ´æ°</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/updates.html#id3">çæ¬åå²</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/release-process.html">Release Process and Rules</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="api">
+<h2>API ææ¡£/æå<a class="headerlink" href="#api" title="æ°¸ä¹é¾æ¥è³æ é¢">Â¶</a></h2>
+<p>å¦æä½ è¦äºè§£å·ä½çå½æ°ãç±»ãæ¹æ³ï¼è¿é¨åææ¡£å°±æ¯ä¸ºä½ åå¤çã</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">å¼åæ¥å£</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#id2">ä¸»è¦æ¥å£</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#id3">å¼å¸¸</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#id4">è¯·æ±ä¼è¯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#id5">ä½çº§ç±»</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#id6">æ´ä½çº§çç±»</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#id7">èº«ä»½éªè¯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#id8">ç¼ç </a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#cookie">Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#id9">ç¶æç æ¥è¯¢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#x">è¿ç§»å° 1.x</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#id12">è¿ç§»å° 2.x</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>è´¡ç®æå<a class="headerlink" href="#id5" title="æ°¸ä¹é¾æ¥è³æ é¢">Â¶</a></h2>
+<p>å¦æä½ è¦ä¸ºé¡¹ç®ååºè´¡ç®ï¼è¯·åèè¿é¨åææ¡£ã</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dev/contributing.html">Contributor's Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/contributing.html#be-cordial">Be Cordial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/contributing.html#get-early-feedback">Get Early Feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/contributing.html#contribution-suitability">Contribution Suitability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/contributing.html#code-contributions">Code Contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dev/contributing.html#steps-for-submitting-code">Steps for Submitting Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev/contributing.html#code-review">Code Review</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev/contributing.html#new-contributors">New Contributors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev/contributing.html#kenneth-reitz-s-code-style">Kenneth Reitz's Code Styleâ¢</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dev/contributing.html#documentation-contributions">Documentation Contributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/contributing.html#bug-reports">Bug Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/contributing.html#feature-requests">Feature Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev/philosophy.html">Development Philosophy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/philosophy.html#management-style">Management Style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/philosophy.html#values">Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/philosophy.html#semantic-versioning">Semantic Versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/philosophy.html#standard-library">Standard Library?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/philosophy.html#linux-distro-packages">Linux Distro Packages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev/todo.html">How to Help</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/todo.html#feature-freeze">Feature Freeze</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/todo.html#development-dependencies">Development Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/todo.html#runtime-environments">Runtime Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/todo.html#are-you-crazy">Are you crazy?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/todo.html#downstream-repackaging">Downstream Repackaging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev/authors.html">è´¡ç®è</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/authors.html#keepers-of-the-four-crystals">Keepers of the Four Crystals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/authors.html#urllib3">Urllib3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/authors.html#patches-and-suggestions">Patches and Suggestions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>æ²¡æå«çæåäºï¼ä½ ç°å¨è¦é èªå·±äºã</p>
+<p>ç¥ä½ å¥½è¿ã</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="#">
+    <img class="logo" src="_static/requests-sidebar.png" title="https://kennethreitz.org/tattoos"/>
+  </a>
+</p>
+
+<p>
+  <iframe src="http://ghbtns.com/github-btn.html?user=requests&repo=requests&type=watch&count=true&size=large"
+    allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+<p>
+  Requests is an elegant and simple HTTP library for Python, built for
+  human beings.
+</p>
+
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=pythonrequestsorg" id="_carbonads_js"></script>
+
+<h3>Stay Informed</h3>
+<p>Receive updates on new releases and upcoming projects.</p>
+
+<p><iframe src="http://ghbtns.com/github-btn.html?user=kennethreitz&type=follow&count=false"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200" height="20"></iframe></p>
+
+<p><a href="https://twitter.com/kennethreitz" class="twitter-follow-button" data-show-count="false">Follow @kennethreitz</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>
+<p><a href="https://saythanks.io/to/kennethreitz">Say Thanks!</a></p>
+<p><a href="http://tinyletter.com/kennethreitz">Join Mailing List</a>.</p>
+
+
+<h3>Other Projects</h3>
+
+<p>More <a href="http://kennethreitz.org/">Kenneth Reitz</a> projects:</p>
+<ul>
+    <li><a href="http://edmsynths.com/">edmsynths.com</a></li>
+    <li><a href="http://pipenv.org/">pipenv</a></li>
+    <li><a href="http://pep8.org/">pep8.org</a></li>
+    <li><a href="http://httpbin.org/">httpbin.org</a></li>
+    <li><a href="http://python-guide.org">The Python Guide</a></li>
+    <li><a href="https://github.com/kennethreitz/maya">Maya: Datetimes for Humans</a></li>
+    <li><a href="https://github.com/kennethreitz/records">Records: SQL for Humans</a></li>
+    <li><a href="http://www.git-legit.org">Legit: Git for Humans</a></li>
+    <li><a href="http://docs.python-tablib.org/en/latest/">Tablib: Tabular Datasets</a></li>
+</ul>
+
+
+<h3>Useful Links</h3>
+<ul>
+  <li><a href="http://docs.python-requests.org/en/latest/community/recommended/">Recommended Packages and Extensions</a></li>
+
+  <p></p>
+
+  <li><a href="http://github.com/requests/requests">Requests @ GitHub</a></li>
+  <li><a href="http://pypi.python.org/pypi/requests">Requests @ PyPI</a></li>
+  <li><a href="http://github.com/requests/requests/issues">Issue Tracker</a></li>
+  <li><a href="http://docs.python-requests.org/en/latest/community/updates/#software-updates">Release History</a></li>
+</ul>
+
+
+<h3>Translations</h3>
+
+<ul>
+  <li><a href="http://docs.python-requests.org/">English</a></li>
+  <li><a href="http://fr.python-requests.org/">French</a></li>
+  <li><a href="http://de.python-requests.org/">German</a></li>
+  <li><a href="http://jp.python-requests.org/">Japanese</a></li>
+  <li><a href="http://cn.python-requests.org/">Chinese</a></li>
+  <li><a href="http://pt.python-requests.org/">Portuguese</a></li>
+  <li><a href="http://it.python-requests.org/">Italian</a></li>
+  <li><a href="http://es.python-requests.org/">Spanish</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>å¿«éæç´¢</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="è½¬å" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+
+<!-- CSS Adjustments (I'm very picky.) -->
+<style type="text/css">
+
+  /* Rezzy requires precise alignment. */
+  img.logo {margin-left: -20px!important;}
+
+  /* "Quick Search" should be capitalized. */
+  div#searchbox h3 {text-transform: capitalize;}
+
+  /* Make the document a little wider, less code is cut-off. */
+  div.document {width: 1008px;}
+
+  /* Much-improved spacing around code blocks. */
+  div.highlight pre {padding: 11px 14px;}
+
+  /* Remain Responsive! */
+  @media screen and (max-width: 1008px) {
+    div.sphinxsidebar {display: none;}
+    div.document {width: 100%!important;}
+
+    /* Have code blocks escape the document right-margin. */
+    div.highlight pre {margin-right: -30px;}
+  }
+
+</style>
+
+<!-- Analytics tracking for Kenneth. -->
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '56ca7a57c88d9011080024dd');
+    t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+    t.src = 'https://d36ee2fcip1434.cloudfront.net/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+<!-- There are no more hacks. -->
+<!--         à®Ú¿Ú°Û£-Ú°Û£â         -->
+<!--   Love, Kenneth Reitz    -->
+
+<script src="_static//konami.js"></script>
+<script>
+  var easter_egg = new Konami('http://fortunes.herokuapp.com/random/raw');
+</script>
+
+<!-- That was not a hack. That was art. -->
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;MMXVII. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> Project.
+      
+    </div>
+
+    
+    <a href="https://github.com/requests/requests" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
